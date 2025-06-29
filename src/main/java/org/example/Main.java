@@ -45,7 +45,7 @@ public class Main {
                     break;
                 case "6":
                     salir = true;
-                    System.out.println("Saliendo del sistema...");
+                    System.out.println("Sistema cerrado.");
                     break;
                 default:
                     System.out.println("Opción no válida. Intente nuevamente.");

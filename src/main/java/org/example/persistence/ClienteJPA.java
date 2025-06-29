@@ -1,6 +1,7 @@
 package org.example.persistence;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import org.example.entities.Cliente;
 
@@ -13,15 +14,15 @@ public class ClienteJPA {
         em = ConfigJPA.getEntityManager();
     }
 
-    public List<Cliente> listarClientes() {
-        TypedQuery<Cliente> query = em.createQuery("SELECT c FROM Cliente c", Cliente.class);
-        return query.getResultList();
-    }
-
-    public void guardarCliente(Cliente cliente) {
+    public void crearCliente(Cliente cliente) {
         em.getTransaction().begin();
         em.persist(cliente);
         em.getTransaction().commit();
+    }
+
+    public List<Cliente> listarClientes() {
+        Query query = em.createQuery("SELECT c FROM Cliente c");
+        return (List<Cliente>) query.getResultList();
     }
 
     public Cliente buscarPorId(Long id) {
@@ -41,8 +42,11 @@ public class ClienteJPA {
     }
 
     public List<Cliente> buscarPorCiudad(String ciudad) {
-        TypedQuery<Cliente> query = em.createQuery("SELECT c FROM Cliente c WHERE c.ciudad = :ciudad", Cliente.class);
+        Query query = em.createQuery("SELECT c FROM Cliente c WHERE c.ciudad = :ciudad");
         query.setParameter("ciudad", ciudad);
-        return query.getResultList();
+        return (List<Cliente>) query.getResultList();
+    }
+
+    public void guardarCliente(Cliente cliente) {
     }
 }

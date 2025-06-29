@@ -37,7 +37,6 @@ public class Cliente {
     @Column(nullable = false, unique = true)
     private String email;
 
-    // --- Constructores ---
     public Cliente() {
     }
 
@@ -122,16 +121,21 @@ public class Cliente {
         this.email = email;
     }
 
-    //Esto arregla que aparezca bien el id y nombre, creo
+    //Esto arregla que aparezcan bien todos los datos del clietne al listarlo
     @Override
     public String toString() {
         return "ID: " + id +
                 ", Nombre: " + nombre +
-                ", Apellidos: " + primerApellido + " " + segundoApellido;
+                ", Apellidos: " + primerApellido + " " + segundoApellido +
+                ", Sexo: " + sexo +
+                ", Ciudad: " + ciudad +
+                ", Fecha de nacimiento: " + fechaNacimiento +
+                ", Teléfono: " + telefono +
+                ", Correo Electrónico: " + email;
+
     }
 
-
-    //Mostrar información
+    //Mostrar información de los clientes
     public void imprimirCliente() {
         System.out.println("ID: " + id);
         System.out.println("Nombre completo: " + nombre + " " + primerApellido + " " + segundoApellido);
@@ -140,6 +144,5 @@ public class Cliente {
         System.out.println("Fecha de nacimiento: " + fechaNacimiento);
         System.out.println("Teléfono: " + telefono);
         System.out.println("Email: " + email);
-        System.out.println("------------------------------------------------");
     }
 }

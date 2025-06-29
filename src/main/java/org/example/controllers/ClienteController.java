@@ -18,7 +18,7 @@ public class ClienteController {
         this.clienteJPA = new ClienteJPA();
     }
 
-    // 1. Agregar cliente
+    //Agregar un nuevo cliente
     public void agregarCliente() {
         System.out.println("\n--- Agregar nuevo cliente ---");
 
@@ -46,7 +46,7 @@ public class ClienteController {
             try {
                 fechaNacimiento = LocalDate.parse(scanner.nextLine());
             } catch (DateTimeParseException e) {
-                System.out.println("Formato inválido. Intente nuevamente.");
+                System.out.println("Formato inválido. Vuelva a intentarlo.");
             }
         }
 
@@ -56,7 +56,7 @@ public class ClienteController {
             try {
                 genero = GeneroCliente.valueOf(scanner.nextLine().toUpperCase());
             } catch (IllegalArgumentException e) {
-                System.out.println("Sexo no válido. Intente nuevamente.");
+                System.out.println("Sexo no válido. Vuelva a intentarlo.");
             }
         }
 
@@ -65,7 +65,7 @@ public class ClienteController {
         System.out.println("Cliente guardado correctamente.");
     }
 
-    // 2. Listar todos los clientes
+    //Listar todos los clientes
     public void listarClientes() {
         System.out.println("\n--- Lista de clientes ---");
         List<Cliente> clientes = clienteJPA.listarClientes();
@@ -77,7 +77,7 @@ public class ClienteController {
     }
 
 
-    // 3. Actualizar cliente
+    //Actualizar información de un cliente
     public void actualizarCliente() {
         System.out.print("Ingrese el ID del cliente a actualizar: ");
         Long id = Long.parseLong(scanner.nextLine());
@@ -92,31 +92,31 @@ public class ClienteController {
 
         System.out.print("Nuevo nombre (" + cliente.getNombre() + "): ");
         String nombre = scanner.nextLine();
-        if (!nombre.isBlank()) cliente.setNombre(nombre);
+        if (!nombre.isEmpty()) cliente.setNombre(nombre);
 
         System.out.print("Nuevo primer apellido (" + cliente.getPrimerApellido() + "): ");
         String primerApellido = scanner.nextLine();
-        if (!primerApellido.isBlank()) cliente.setPrimerApellido(primerApellido);
+        if (!primerApellido.isEmpty()) cliente.setPrimerApellido(primerApellido);
 
         System.out.print("Nuevo segundo apellido (" + cliente.getSegundoApellido() + "): ");
         String segundoApellido = scanner.nextLine();
-        if (!segundoApellido.isBlank()) cliente.setSegundoApellido(segundoApellido);
+        if (!segundoApellido.isEmpty()) cliente.setSegundoApellido(segundoApellido);
 
         System.out.print("Nueva ciudad (" + cliente.getCiudad() + "): ");
         String ciudad = scanner.nextLine();
-        if (!ciudad.isBlank()) cliente.setCiudad(ciudad);
+        if (!ciudad.isEmpty()) cliente.setCiudad(ciudad);
 
         System.out.print("Nuevo teléfono (" + cliente.getTelefono() + "): ");
         String telefono = scanner.nextLine();
-        if (!telefono.isBlank()) cliente.setTelefono(telefono);
+        if (!telefono.isEmpty()) cliente.setTelefono(telefono);
 
         System.out.print("Nuevo email (" + cliente.getEmail() + "): ");
         String email = scanner.nextLine();
-        if (!email.isBlank()) cliente.setEmail(email);
+        if (!email.isEmpty()) cliente.setEmail(email);
 
         System.out.print("Nueva fecha de nacimiento (" + cliente.getFechaNacimiento() + "): ");
         String fecha = scanner.nextLine();
-        if (!fecha.isBlank()) {
+        if (!fecha.isEmpty()) {
             try {
                 cliente.setFechaNacimiento(LocalDate.parse(fecha));
             } catch (DateTimeParseException e) {
@@ -126,7 +126,7 @@ public class ClienteController {
 
         System.out.print("Nuevo sexo (" + cliente.getSexo() + "): ");
         String sexo = scanner.nextLine();
-        if (!sexo.isBlank()) {
+        if (!sexo.isEmpty()) {
             try {
                 cliente.setSexo(GeneroCliente.valueOf(sexo.toUpperCase()));
             } catch (IllegalArgumentException e) {
@@ -138,7 +138,7 @@ public class ClienteController {
         System.out.println("Cliente actualizado correctamente.");
     }
 
-    // 4. Eliminar cliente
+    //Eliminar un cliente
     public void eliminarCliente() {
         System.out.print("Ingrese el ID del cliente a eliminar: ");
         Long id = Long.parseLong(scanner.nextLine());
@@ -153,7 +153,7 @@ public class ClienteController {
         System.out.println("Cliente eliminado correctamente.");
     }
 
-    // 5. Buscar clientes por ciudad
+    //Buscar clientes por ciudad
     public void buscarClientePorCiudad() {
         System.out.print("Ingrese la ciudad: ");
         String ciudad = scanner.nextLine();
@@ -166,11 +166,11 @@ public class ClienteController {
         }
     }
 
-    // Metodo auxiliar
+    //Metodo para que no haya respuestas vacías
     private String leerNoVacio() {
         String entrada = scanner.nextLine();
         while (entrada.isBlank()) {
-            System.out.print("Este campo es obligatorio. Ingrese nuevamente: ");
+            System.out.print("Este campo es obligatorio. Ingrese de nuevo: ");
             entrada = scanner.nextLine();
         }
         return entrada;
